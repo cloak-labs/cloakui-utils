@@ -23,8 +23,13 @@ const getGridLayoutFromColumnWidths = (percentages, maxGridCols = 12) => {
         percentages = percentages.map((p) => (p / total) * 100);
     }
     // Function to find "Greatest Common Divisor" (GCD) of two numbers
-    const gcd = (a, b) => {
-        return b === 0 ? a : gcd(b, a % b);
+    const gcd = (a, number) => {
+        while (number) {
+            let t = number;
+            number = a % number;
+            a = t;
+        }
+        return a;
     };
     // Find GCD of all percentages
     let commonDivisor = percentages[0];
@@ -37,9 +42,30 @@ const getGridLayoutFromColumnWidths = (percentages, maxGridCols = 12) => {
         gridCols = maxGridCols;
         commonDivisor = 100 / maxGridCols;
     }
-    // Calculate colSpans
-    const colSpans = percentages.map((p) => Math.round(p / commonDivisor));
-    return { gridCols, colSpans };
+    // Calculate colSpans without rounding
+    let colSpans = percentages.map((p) => p / commonDivisor);
+    // Calculate initial rounded colSpans and the rounding differences
+    let roundedColSpans = colSpans.map((span) => Math.round(span));
+    let diff = colSpans.map((span, i) => ({
+        index: i,
+        diff: span - roundedColSpans[i],
+    }));
+    // Sort the differences by absolute value in descending order
+    diff.sort((a, b) => Math.abs(b.diff) - Math.abs(a.diff));
+    // Adjust the colSpans based on the sorted differences
+    let totalRoundedSpans = roundedColSpans.reduce((a, b) => a + b, 0);
+    for (let i = 0; i < diff.length && totalRoundedSpans > maxGridCols; i++) {
+        let adjustment = totalRoundedSpans - maxGridCols;
+        let spanIndex = diff[i].index;
+        // Adjust the column span down if it's too high
+        if (roundedColSpans[spanIndex] > adjustment) {
+            roundedColSpans[spanIndex] -= adjustment;
+            totalRoundedSpans -= adjustment;
+        }
+    }
+    // Calculate gridCols based on the final colSpans
+    gridCols = roundedColSpans.reduce((a, b) => a + b, 0);
+    return { gridCols, colSpans: roundedColSpans };
 };
 exports.getGridLayoutFromColumnWidths = getGridLayoutFromColumnWidths;
 //! INITIAL VERSION
