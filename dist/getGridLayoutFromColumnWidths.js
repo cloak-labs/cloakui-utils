@@ -1,4 +1,3 @@
-"use strict";
 /**
  * getGridLayoutFromColumnWidths
  *
@@ -14,9 +13,7 @@
  *    When the %s don't add up to 100, we adjust them proportionally so they add up to 100 before converting to colSpans:
  *      --> getGridLayoutFromColumnWidths([50, 70]); // ==> { gridCols: 5, colSpans: [2, 3] }
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getGridLayoutFromColumnWidths = void 0;
-const getGridLayoutFromColumnWidths = (percentages, maxGridCols = 12) => {
+export const getGridLayoutFromColumnWidths = (percentages, maxGridCols = 12) => {
     // Normalize percentages if they don't sum to 100
     const total = percentages.reduce((sum, current) => sum + current, 0);
     if (total !== 100) {
@@ -67,7 +64,6 @@ const getGridLayoutFromColumnWidths = (percentages, maxGridCols = 12) => {
     gridCols = roundedColSpans.reduce((a, b) => a + b, 0);
     return { gridCols, colSpans: roundedColSpans };
 };
-exports.getGridLayoutFromColumnWidths = getGridLayoutFromColumnWidths;
 //! INITIAL VERSION
 // export const getGridLayoutFromColumnWidths = (
 //   columnWidths: number[],
