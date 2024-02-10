@@ -2,12 +2,13 @@
   "name": "@cloakui/utils",
   "version": "0.1.0",
   "description": "Shared utilities for all CloakUI component packages.",
-  "main": "dist/index",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "require": "./dist/index.js",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
     }
   },
   "scripts": {
