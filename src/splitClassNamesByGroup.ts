@@ -14,7 +14,12 @@ export function splitClassNamesByGroup(
   classString: string,
   ...groupNames: string[]
 ): string[] {
-  let remainingClasses = classString;
+  if (!classString) {
+    const numGroups = groupNames.length;
+    return Array(numGroups + 1).fill("");
+  }
+
+  let remainingClasses = classString.trim();
   const groupClasses: string[] = [];
 
   for (const groupName of groupNames) {
@@ -24,7 +29,9 @@ export function splitClassNamesByGroup(
     if (match && match[1]) {
       groupClasses.push(match[1].trim());
       // Remove the group pattern from the remaining string
-      remainingClasses = remainingClasses.replace(match[0], "").trim();
+      // Use a fresh regex for replacement to avoid lastIndex issues
+      const replaceRegex = new RegExp(`${groupName}\\([^)]+\\)`, "g");
+      remainingClasses = remainingClasses.replace(replaceRegex, "").trim();
     } else {
       groupClasses.push("");
     }
