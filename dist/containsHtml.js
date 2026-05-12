@@ -9,7 +9,9 @@
 export const containsHtml = (str) => {
     // Regex to detect HTML tags
     const htmlTagRegex = /<[^>]*>/;
+    if (htmlTagRegex.test(str))
+        return true; // early return prevents unnecessary regex execution
     // Regex to detect HTML entities (named, decimal numeric, and hexadecimal)
     const htmlEntityRegex = /&(?:[a-zA-Z]+|#[0-9]+|#x[0-9a-fA-F]+);/;
-    return htmlTagRegex.test(str) || htmlEntityRegex.test(str);
+    return htmlEntityRegex.test(str);
 };

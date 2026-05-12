@@ -7,3 +7,4 @@
  * in contexts not related to HTML tags, but it's a decent start for simple needs.
  */
 export declare const containsHtml: (str: string) => boolean;
+//# sourceMappingURL=containsHtml.d.ts.map

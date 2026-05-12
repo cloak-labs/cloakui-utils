@@ -17,3 +17,4 @@ export declare const getGridLayoutFromColumnWidths: (percentages: number[], maxG
     gridCols: number;
     colSpans: number[];
 };
+//# sourceMappingURL=getGridLayoutFromColumnWidths.d.ts.map

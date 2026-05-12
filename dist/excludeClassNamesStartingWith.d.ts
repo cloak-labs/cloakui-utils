@@ -5,3 +5,4 @@
  * @example excludeClassesStartingWith("is-style-fill is-style-secondary text-root bg-root", ["is-style-", "bg-"]); // returns "text-root"
  */
 export declare const excludeClassNamesStartingWith: (classes: string, excludePrefixes: string[]) => string;
+//# sourceMappingURL=excludeClassNamesStartingWith.d.ts.map

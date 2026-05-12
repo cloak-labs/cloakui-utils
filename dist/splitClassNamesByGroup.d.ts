@@ -11,3 +11,4 @@
  *   --> Returns ["flex bg-red", "mt-2", "pb-4"]
  */
 export declare function splitClassNamesByGroup(classString: string, ...groupNames: string[]): string[];
+//# sourceMappingURL=splitClassNamesByGroup.d.ts.map

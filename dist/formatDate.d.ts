@@ -9,3 +9,4 @@ export type FormatDateProps = {
  * A little helper to prettify date strings for human readability
  */
 export declare function formatDate(props: FormatDateProps): string;
+//# sourceMappingURL=formatDate.d.ts.map
