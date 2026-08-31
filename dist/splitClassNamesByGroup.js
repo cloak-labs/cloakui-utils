@@ -15,6 +15,9 @@ export function splitClassNamesByGroup(classString, ...groupNames) {
         const numGroups = groupNames.length;
         return Array(numGroups + 1).fill("");
     }
+    if (typeof classString !== "string") {
+        return [];
+    }
     let remainingClasses = classString.trim();
     const groupClasses = [];
     for (const groupName of groupNames) {
