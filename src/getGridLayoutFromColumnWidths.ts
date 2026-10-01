@@ -15,7 +15,7 @@
  */
 export const getGridLayoutFromColumnWidths = (
   percentages: number[],
-  maxGridCols: number = 12
+  maxGridCols: number = 12,
 ): { gridCols: number; colSpans: number[] } => {
   // Normalize percentages if they don't sum to 100
   const total = percentages.reduce((sum, current) => sum + current, 0);

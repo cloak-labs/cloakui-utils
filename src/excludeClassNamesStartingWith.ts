@@ -6,12 +6,12 @@
  */
 export const excludeClassNamesStartingWith = (
   classes: string,
-  excludePrefixes: string[]
+  excludePrefixes: string[],
 ) =>
   classes
     ?.split(" ")
     ?.filter(
       (className) =>
-        !excludePrefixes?.some((prefix) => className.startsWith(prefix))
+        !excludePrefixes?.some((prefix) => className.startsWith(prefix)),
     )
     ?.join(" ") ?? "";

@@ -36,14 +36,14 @@ export function splitClassNamesStartingWith(
   }
 
   const normalizedGroups = prefixGroups.map((group) =>
-    Array.isArray(group) ? group : [group]
+    Array.isArray(group) ? group : [group],
   );
   const groups: string[][] = normalizedGroups.map(() => []);
   const remaining: string[] = [];
 
   for (const className of classString.trim().split(/\s+/).filter(Boolean)) {
     const groupIndex = normalizedGroups.findIndex((prefixes) =>
-      prefixes.some((prefix) => className.startsWith(prefix))
+      prefixes.some((prefix) => className.startsWith(prefix)),
     );
     if (groupIndex !== -1) {
       groups[groupIndex].push(className);

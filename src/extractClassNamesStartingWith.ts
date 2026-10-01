@@ -6,11 +6,11 @@
  */
 export const extractClassNamesStartingWith = (
   classes: string,
-  prefixes: string[]
+  prefixes: string[],
 ) =>
   classes
     ?.split(" ")
     ?.filter((className) =>
-      prefixes?.some((prefix) => className.startsWith(prefix))
+      prefixes?.some((prefix) => className.startsWith(prefix)),
     )
     ?.join(" ") ?? "";
